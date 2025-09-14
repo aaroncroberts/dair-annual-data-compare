@@ -1,0 +1,65 @@
+[
+  {
+    "id": "phase-1",
+    "duration": "WEEKS 1-2",
+    "title": "Discovery & Definition",
+    "description": "A collaborative deep-dive to align on technical requirements, data schemas, and user interface designs before development begins.",
+    "details": {
+      "time": "2 Weeks",
+      "effort": "Joint Workshops",
+      "value": "Finalized Blueprint & UI"
+    },
+    "deliverables": [
+      "Technical Specification Document",
+      "UI/UX Wireframes & Prototypes"
+    ]
+  },
+  {
+    "id": "phase-2",
+    "duration": "WEEKS 3-8",
+    "title": "Development & Implementation",
+    "description": "Building the core application features, including the file uploader, rule definition engine, and the primary visualization dashboard.",
+    "details": {
+      "time": "6 Weeks",
+      "effort": "Agile Sprints",
+      "value": "Working Application"
+    },
+    "deliverables": [
+      "Functional Data Upload Module",
+      "Completed Rule Engine UI",
+      "Live Data Summary Table",
+      "Interactive Visualization Component"
+    ]
+  },
+  {
+    "id": "phase-3",
+    "duration": "WEEK 9",
+    "title": "Testing & Deployment",
+    "description": "Conducting User Acceptance Testing (UAT) with the finance team to ensure accuracy before deploying the final tool to Cloudflare.",
+    "details": {
+      "time": "1 Week",
+      "effort": "User Acceptance Testing",
+      "value": "Production-Ready Tool"
+    },
+    "deliverables": [
+      "UAT Sign-off Document",
+      "Live Application on Cloudflare",
+      "Performance Benchmarks"
+    ]
+  },
+  {
+    "id": "phase-4",
+    "duration": "WEEK 10",
+    "title": "Handoff & Training",
+    "description": "Providing the finance team with comprehensive training materials and live sessions to ensure successful adoption and long-term use.",
+    "details": {
+      "time": "1 Week",
+      "effort": "Training & Documentation",
+      "value": "Empowered Team"
+    },
+    "deliverables": [
+      "User Training Manual & Guides",
+      "Project Completion Report"
+    ]
+  }
+]
