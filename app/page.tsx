@@ -28,6 +28,10 @@ interface ProjectPhase {
         value: string;
     };
     deliverables: string[];
+    gantt: {
+        start: number;
+        span: number;
+    };
 }
 
 // --- Main Page Component ---
@@ -206,6 +210,43 @@ export default function InfographicPage() {
                                 </div>
                             </div>
                        ))}
+                    </div>
+                </div>
+                
+                {/* Gantt Chart Visualization */}
+                <div id="gantt-chart" className={`animate-on-scroll mt-24 transition-all duration-1000 ease-in-out ${isVisible('gantt-chart') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                    <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-8">
+                        <h3 className="text-2xl font-bold text-white mb-6 text-center">Project Timeline</h3>
+                        <div className="space-y-4">
+                            {projectPhases.map((phase, index) => (
+                                <div key={`gantt-${phase.id}`} className="grid grid-cols-12 gap-x-4 items-center">
+                                    <div className="col-span-3">
+                                        <p className="font-semibold text-sm text-gray-300 truncate">{phase.title}</p>
+                                    </div>
+                                    <div className="col-span-9 relative">
+                                        <div className="h-8 bg-gray-700/50 rounded-full"></div>
+                                        <div 
+                                            className="absolute top-0 h-8 bg-[#008A54] rounded-full flex items-center justify-end px-2"
+                                            style={{ 
+                                                left: `${(phase.gantt.start - 1) * 10}%`, 
+                                                width: `${phase.gantt.span * 10}%`,
+                                                transition: 'all 1s ease-in-out',
+                                                transform: isVisible('gantt-chart') ? 'translateX(0)' : 'translateX(-20px)',
+                                                opacity: isVisible('gantt-chart') ? 1 : 0,
+                                                transitionDelay: `${200 + index * 100}ms`
+                                            }}
+                                        >
+                                            <span className="text-xs font-bold text-white">{phase.duration}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="grid grid-cols-10 gap-x-0 mt-3 text-xs text-gray-400">
+                            {Array.from({ length: 10 }, (_, i) => (
+                                <div key={`week-${i+1}`} className="text-center border-l border-gray-600">Wk {i+1}</div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

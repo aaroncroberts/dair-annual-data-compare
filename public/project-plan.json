@@ -12,7 +12,11 @@
     "deliverables": [
       "Technical Specification Document",
       "UI/UX Wireframes & Prototypes"
-    ]
+    ],
+    "gantt": {
+      "start": 1,
+      "span": 2
+    }
   },
   {
     "id": "phase-2",
@@ -29,7 +33,11 @@
       "Completed Rule Engine UI",
       "Live Data Summary Table",
       "Interactive Visualization Component"
-    ]
+    ],
+    "gantt": {
+      "start": 3,
+      "span": 6
+    }
   },
   {
     "id": "phase-3",
@@ -45,7 +53,11 @@
       "UAT Sign-off Document",
       "Live Application on Cloudflare",
       "Performance Benchmarks"
-    ]
+    ],
+    "gantt": {
+      "start": 9,
+      "span": 1
+    }
   },
   {
     "id": "phase-4",
@@ -60,6 +72,10 @@
     "deliverables": [
       "User Training Manual & Guides",
       "Project Completion Report"
-    ]
+    ],
+    "gantt": {
+      "start": 10,
+      "span": 1
+    }
   }
 ]
