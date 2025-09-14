@@ -91,3 +91,53 @@ npm run lint
 - `public/`: Contains static assets, including the JSON data files.
 - `next.config.ts`: Next.js configuration.
 - `package.json`: Project scripts and dependencies.
+
+## Commit Messages
+
+Commit messages should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This creates a consistent and readable commit history.
+
+Each commit message consists of a **header**, a **body**, and a **footer**.
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+### Type
+
+The type must be one of the following:
+
+-   **feat**: A new feature
+-   **fix**: A bug fix
+-   **docs**: Documentation only changes
+-   **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+-   **refactor**: A code change that neither fixes a bug nor adds a feature
+-   **perf**: A code change that improves performance
+-   **test**: Adding missing tests or correcting existing tests
+-   **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+-   **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+-   **chore**: Other changes that don't modify `src` or `test` files
+-   **revert**: Reverts a previous commit
+
+### Scope
+
+The scope is optional and can be anything specifying the place of the commit change. For example `(page)`, `(component)`, `(styles)`.
+
+### Subject
+
+The subject contains a succinct description of the change:
+
+-   Use the imperative, present tense: "change" not "changed" nor "changes"
+-   Don't capitalize the first letter
+-   No dot (.) at the end
+
+### Body
+
+The body is optional. Use it to explain what and why vs. how.
+
+### Footer
+
+The footer is optional. It should contain information about **Breaking Changes** and is also the place to reference GitHub issues that this commit **Closes**.
