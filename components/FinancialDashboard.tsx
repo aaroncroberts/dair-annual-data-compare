@@ -28,7 +28,16 @@ export default function FinancialDashboard() {
 
     const processData = useCallback((data: Transaction[] | undefined, rule: RollupRule) => {
         if (!data || !rule) return {};
-        return data.reduce((acc: { [key: string]: { debits: number, credits: number } }, item) => {
+
+        let filteredData = data;
+        if (rule.filterColumn && rule.filterValue) {
+            filteredData = data.filter(item => {
+                const itemValue = item[rule.filterColumn!];
+                return itemValue && String(itemValue).toLowerCase().includes(rule.filterValue!.toLowerCase());
+            });
+        }
+
+        return filteredData.reduce((acc: { [key: string]: { debits: number, credits: number } }, item) => {
             const key = item[rule.groupBy];
             if (typeof key !== 'string' && typeof key !== 'number') return acc;
             const groupKey = String(key);
@@ -77,8 +86,8 @@ export default function FinancialDashboard() {
         <div style={{'--theme-primary': theme.primary, '--theme-accent': theme.accent} as React.CSSProperties} className="bg-gray-50 min-h-screen font-sans text-gray-800">
             <header className="mb-8 bg-[var(--theme-primary)] text-white shadow-md">
                 <div className="container mx-auto p-4 sm:p-6 lg:p-8">
-                    <h1 className="text-3xl font-bold">University Financial Analysis</h1>
-                    <p className="text-green-100 mt-1">GL Account Comparison Dashboard</p>
+                    <h1 className="text-3xl font-bold">Financial Data Analysis</h1>
+                    <p className="text-green-100 mt-1">The Office of Data Analytics & Institutional Reseach (DAIR)</p>
                 </div>
             </header>
             <div className="container mx-auto p-4 sm:p-6 lg:p-8 pt-0">

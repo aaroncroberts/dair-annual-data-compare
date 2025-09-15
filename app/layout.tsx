@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "University Financial Analysis",
-  description: "GL Account Comparison Dashboard",
+  title: "Financial Data Analysis",
+  description: "A project by The Office of Data Analytics & Institutional Reseach (DAIR)",
 };
 
 export default function RootLayout({

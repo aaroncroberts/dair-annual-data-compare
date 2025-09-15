@@ -15,7 +15,7 @@ interface DataManagementPanelProps {
 
 const DataManagementPanel: React.FC<DataManagementPanelProps> = ({ dataFiles, setDataFiles, rollupRules, setRollupRules, activeRuleId, setActiveRuleId }) => {
     const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
-    const [newRule, setNewRule] = useState({ name: '', groupBy: '' });
+    const [newRule, setNewRule] = useState({ name: '', groupBy: '', filterColumn: '', filterValue: '' });
 
     const availableColumns = useMemo(() => {
         const allData = [...(dataFiles.year1?.data || []), ...(dataFiles.year2?.data || [])];
@@ -56,10 +56,18 @@ const DataManagementPanel: React.FC<DataManagementPanelProps> = ({ dataFiles, se
     const handleAddRule = () => {
         if (newRule.name && newRule.groupBy) {
             const newId = Math.max(0, ...rollupRules.map(r => r.id)) + 1;
-            const ruleToAdd: RollupRule = { id: newId, name: newRule.name, groupBy: newRule.groupBy as keyof Transaction };
+            const ruleToAdd: RollupRule = { 
+                id: newId, 
+                name: newRule.name, 
+                groupBy: newRule.groupBy as keyof Transaction 
+            };
+            if (newRule.filterColumn && newRule.filterValue) {
+                ruleToAdd.filterColumn = newRule.filterColumn as keyof Transaction;
+                ruleToAdd.filterValue = newRule.filterValue;
+            }
             setRollupRules([...rollupRules, ruleToAdd]);
             setActiveRuleId(newId);
-            setNewRule({ name: '', groupBy: '' });
+            setNewRule({ name: '', groupBy: '', filterColumn: '', filterValue: '' });
             setIsRuleModalOpen(false);
         }
     };
@@ -145,6 +153,25 @@ const DataManagementPanel: React.FC<DataManagementPanelProps> = ({ dataFiles, se
                                     <option key={col} value={col}>{col}</option>
                                 ))}
                             </select>
+                            <select
+                                value={newRule.filterColumn}
+                                onChange={(e) => setNewRule({ ...newRule, filterColumn: e.target.value, filterValue: '' })}
+                                className="w-full p-2 border border-gray-300 rounded-md"
+                                disabled={availableColumns.length === 0}
+                            >
+                                <option value="">Select filter column (optional)</option>
+                                {availableColumns.map(col => (
+                                    <option key={col} value={col}>{col}</option>
+                                ))}
+                            </select>
+                            <input
+                                type="text"
+                                placeholder="Filter value"
+                                value={newRule.filterValue}
+                                onChange={(e) => setNewRule({ ...newRule, filterValue: e.target.value })}
+                                className="w-full p-2 border border-gray-300 rounded-md"
+                                disabled={!newRule.filterColumn}
+                            />
                         </div>
                         <div className="mt-6 flex justify-end gap-3">
                             <button onClick={() => setIsRuleModalOpen(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md">Cancel</button>

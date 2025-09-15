@@ -21,6 +21,8 @@ export interface RollupRule {
     id: number;
     name: string;
     groupBy: keyof Transaction;
+    filterColumn?: keyof Transaction;
+    filterValue?: string;
 }
 
 export interface SummaryRow {
